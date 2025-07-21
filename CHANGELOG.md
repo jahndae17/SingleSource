@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.2.0](https://github.com/ThatOpen/engine_components/compare/v3.1.0...v3.2.0) (2025-07-21)
+
+
+### Features
+
+* add VolumeMeasurement component in front package ([9382008](https://github.com/ThatOpen/engine_components/commit/93820081a3870c1af8d02d4015069b6679e4cf7f))
+
 ## [3.1.0](https://github.com/ThatOpen/engine_components/compare/v2.4.0...v3.1.0) (2025-07-10)
 
 
