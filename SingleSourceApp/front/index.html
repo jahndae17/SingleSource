@@ -1,1 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SingleSource 3D World Demo</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      background: #202932;
+    }
+    #container {
+      width: 100vw;
+      height: 100vh;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div id="container"></div>
+  <script type="module">
+    // Import the framework and Three.js (adjust paths if needed for your setup)
+    import * as THREE from "three";
+    import * as OBC from "@thatopen/components"; // Adjust if local import is needed
 
+    // Grab the container div
+    const container = document.getElementById("container");
+
+    // Set up core components
+    const components = new OBC.Components();
+    const worlds = components.get(OBC.Worlds);
+
+    // Create a new world with scene, camera, renderer
+    const world = worlds.create<
+      OBC.SimpleScene,
+      OBC.SimpleCamera,
+      OBC.SimpleRenderer
+    >();
+
+    world.scene = new OBC.SimpleScene(components);
+    world.renderer = new OBC.SimpleRenderer(components, container);
+    world.camera = new OBC.SimpleCamera(components);
+
+    components.init();
+
+    // Add a cube to the scene
+    const material = new THREE.MeshLambertMaterial({ color: "#6528D7" });
+    const geometry = new THREE.BoxGeometry();
+    const cube = new THREE.Mesh(geometry, material);
+    world.scene.three.add(cube);
+
+    // Add lights and setup scene (this will add ambient and directional lights)
+    world.scene.setup();
+
+    // Set initial camera position and target
+    world.camera.controls.setLookAt(3, 3, 3, 0, 0, 0);
+
+    // The renderer and controls are automatically interactive (orbit, pan, zoom)
+    // If you want to add more interactivity, you can listen to camera or control events here
+  </script>
+</body>
+</html>
